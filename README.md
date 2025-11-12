@@ -1,104 +1,27 @@
-# Predicting-energy-consumption-through-deep-learning-powered-time-series-analysis
+# Energy Consumption Prediction using Machine Learning
+## Time Series Forecasting (LSTM)
 
-Energy consumption forecasting is critical for efficient energy management, resource allocation, and sustainability planning. Traditional statistical models such as ARIMA and exponential smoothing often fail to capture non-linear patterns in complex, high-dimensional energy data. This study explores deep learning-based time series models—particularly Long Short-Term Memory (LSTM) networks, Gated Recurrent Units (GRU), and Temporal Convolutional Networks (TCN)—for accurate prediction of short-term and long-term energy consumption. Using real-world datasets (e.g., household or industrial energy usage), the proposed model learns temporal dependencies and seasonal trends, demonstrating improved forecasting accuracy over baseline methods.
+This research was done as part of a research seminar course at LAB University of Applied Science (fall 2022).
+The report was written using the thesis template of LAB University.
 
-1. Introduction
+### Abstract
 
-Global demand for energy continues to grow rapidly.
+The purpose of this research was to predict energy consumption using the data of Finland's transmission system operator. 
+The objective of this project was to test if a machine learning model can yield good enough results in a complex forecasting problem, 
+exploring machine learning techniques and developing a data-driven model for forecasting energy.
+The data contained 6-year hourly electrical consumption in Finland, and it is a univariate time series, as it is seasonal. 
+We used a long-short term memory (LSTM) model to train the data.
+The model was evaluated using root mean squared error (RMSE) to be directly comparable to energy readings in the data.
+The result shows that electricity consumption can be predicted using machine learning algorithms so we can use the results to deploy renewable energy, 
+plan for high/low load days, and reduce wastage from polluting on reserve standby generation.
 
-Accurate prediction of energy consumption enables utilities to optimize production, manage loads, and reduce waste.
+### Model Implementation
+The data was imported from Finland's transmission system operator as a CSV file and then exported to a GitHub repository. 
+There was a total number of 52965 observations and 5 variables in this dataset and no missing values were found. 
+The minimum load volume is 5341 MWh, and the maximum load volume is 15105 MWh along with an average volume of 9488.750519 MWh. 
+The data is univariate time series, where there is a need for one column to present time and another one to present energy consumption. 
+For predicting day consumption, data were down-sampled using resample function. 
+This function changed the data from hourly frequency to daily frequency.
+Training the LSTM model was done using the training set and the validation dataset for testing the results through the training process. 
+The learning algorithm worked through the entire training dataset 60 times (Epoch), and the model weights were updated after each batch where the batch size is 20.
 
-Traditional models (ARIMA, SARIMA) are limited when data are non-linear or involve multiple variables (e.g., temperature, humidity, time of day).
-
-Deep learning, with its ability to capture complex patterns, provides a powerful alternative.
-
-The paper aims to design and evaluate deep learning models for energy consumption forecasting.
-
-2. Literature Review
-
-Statistical approaches: ARIMA, Holt-Winters, regression models.
-
-Machine learning approaches: SVR, Random Forest, XGBoost.
-
-Deep learning approaches:
-
-LSTM and GRU for sequential data.
-
-CNN and TCN for feature extraction from time series.
-
-Hybrid models combining LSTM + Attention or CNN + LSTM.
-
-Prior studies show deep models can improve accuracy by 10–30% compared to classical methods.
-
-3. Methodology
-3.1 Dataset
-
-Source: e.g., UCI Energy Consumption Dataset, Smart Meter Data, or National Grid data.
-
-Features: date/time, temperature, humidity, wind speed, previous energy usage, etc.
-
-Target: energy consumption (kWh).
-
-3.2 Data Preprocessing
-
-Missing value imputation.
-
-Normalization or Min-Max scaling.
-
-Feature engineering (e.g., hour, day, season, holidays).
-
-Train–validation–test split.
-
-3.3 Model Architecture
-
-LSTM Model:
-
-Input: past 24/48/72-hour energy readings.
-
-Layers: LSTM → Dropout → Dense.
-
-Alternative Models: GRU, CNN-LSTM hybrid, or Transformer-based sequence models.
-
-Loss Function: MSE or MAE.
-
-Optimizer: Adam or RMSProp.
-
-3.4 Evaluation Metrics
-
-Mean Absolute Error (MAE)
-
-Root Mean Squared Error (RMSE)
-
-Mean Absolute Percentage Error (MAPE)
-
-4. Results and Discussion
-
-Compare model performance with ARIMA and baseline ML models.
-
-Present learning curves and prediction plots.
-
-Discuss overfitting prevention (dropout, early stopping).
-
-Analyze impact of weather or time-related variables on prediction accuracy.
-
-5. Conclusion
-
-Deep learning models, particularly LSTM and GRU, outperform traditional statistical methods for energy consumption prediction. They capture complex temporal dependencies, enabling better decision-making in energy management systems. Future work may include hybrid models with attention mechanisms or deployment on edge devices for real-time forecasting.
-
-6. Future Scope
-
-Integration with IoT-enabled smart meters.
-
-Multi-step ahead forecasting.
-
-Use of Transformer-based architectures (e.g., Temporal Fusion Transformer).
-
-Real-time prediction and anomaly detection in energy grids.
-
-7. References (Example Sources)
-
-Hochreiter, S., & Schmidhuber, J. (1997). Long short-term memory. Neural Computation.
-
-Zheng, J., et al. (2020). Short-term electricity load forecasting: A deep learning approach. IEEE Transactions on Smart Grid.
-
-Ahmad, T., & Chen, H. (2019). Short and medium-term forecasting of energy demand through machine learning. Energy Reports.
